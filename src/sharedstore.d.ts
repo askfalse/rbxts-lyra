@@ -24,6 +24,8 @@ export interface BaseStoreConfig<Schema> {
     template: NoInfer<Schema>;
     // A validation function (e.g., created with `t`) that checks if data conforms to the expected structure. Returns `true` if valid, or `false` and an error message if invalid.
     schema: t.check<Schema>;
+    // Whether to use DataStoreService for distributed locking instead of MemoryStoreService. Defaults to `false`.
+    useDSSLocking?: boolean;
     // An optional ordered list of migration steps to apply to data loaded from the DataStore if its schema is older than the current version. See `Migrations.luau`.
     migrationSteps?: MigrationChain<NoInfer<Schema>>;
     // An optional function to load data from a different, legacy storage system when a key is accessed for the first time and doesn't exist in this store.
